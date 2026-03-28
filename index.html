@@ -16,15 +16,15 @@
   .text-color-light{color:var(--kiosk-text)!important}
   .text-opacity-50{color:var(--kiosk-text-muted)}
   .brand-lockup{display:flex;align-items:baseline;gap:0}
-  .brand-lockup img{width:244px;height:244px;max-width:none;display:block;object-fit:contain;flex:0 0 auto;margin-right:-12px}
+  .brand-lockup img{width:240px;height:240px;max-width:none;display:block;object-fit:contain;flex:0 0 auto;margin-right:-16px}
   .brand-lockup span{font-size:3.2rem;font-weight:700;letter-spacing:.006em;color:var(--kiosk-text);line-height:1}
   .logo-link-to-homepage{margin-left:0;margin-right:auto;display:flex;align-items:center}
-  .kiosk-scroll-hint{position:absolute;left:50%;bottom:clamp(10px,3.2vh,30px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:36px 52px;min-height:240px;min-width:400px;border-radius:42px;background:linear-gradient(180deg,color-mix(in srgb,var(--kiosk-bg-elevated) 97%,#fff 3%),color-mix(in srgb,var(--kiosk-bg) 90%,#fff 10%));border:2px solid color-mix(in srgb,var(--kiosk-accent) 88%,#fff 12%);backdrop-filter:blur(8px);box-shadow:0 22px 48px rgba(0,0,0,.36),0 0 0 1px rgba(255,255,255,.08) inset;animation:kioskPulse 1.8s ease-in-out infinite;transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
+  .kiosk-scroll-hint{position:absolute;left:50%;bottom:clamp(10px,3.2vh,30px);transform:translateX(-50%);min-height:100px;padding:24px 32px;border-radius:999px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:320px;background:linear-gradient(180deg,color-mix(in srgb,var(--kiosk-bg-elevated) 94%,#fff 6%),color-mix(in srgb,var(--kiosk-bg) 84%,#fff 16%));border:2px solid color-mix(in srgb,var(--kiosk-accent) 88%,#fff 12%);backdrop-filter:blur(8px);box-shadow:0 22px 48px rgba(0,0,0,.36),0 0 0 1px rgba(255,255,255,.08) inset;animation:kioskPulse 1.8s ease-in-out infinite;transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
   .kiosk-scroll-hint:active,.kiosk-scroll-hint.is-pressed{transform:translateX(-50%) scale(.95);opacity:.85}
-  .kiosk-scroll-hint .wrap-image-arrow-scroll-down{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
-  .kiosk-scroll-hint .links-alt{font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:var(--kiosk-text-muted)}
-  .kiosk-scroll-hint .hint-copy{font-size:1.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--kiosk-accent-strong)}
-  .kiosk-scroll-hint .inline-svg{width:34px;height:84px}
+  .kiosk-scroll-hint .wrap-image-arrow-scroll-down{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+  .kiosk-scroll-hint .links-alt{display:none}
+  .kiosk-scroll-hint .hint-copy{font-size:1.2rem;font-weight:700;letter-spacing:.08em;color:var(--kiosk-accent-strong)}
+  .kiosk-scroll-hint .inline-svg{width:24px;height:48px}
   .kiosk-scroll-hint:hover,.kiosk-scroll-hint.is-pressed{box-shadow:0 0 0 2px color-mix(in srgb,var(--kiosk-accent) 65%,transparent)}
   @keyframes kioskPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
   @keyframes kioskCarouselAutoplay{from{transform:translate3d(0,0,0) rotateZ(0deg)}to{transform:translate3d(0,0,0) rotateZ(-360deg)}}
@@ -390,11 +390,16 @@
       if (scrollCta) {
         scrollCta.classList.add('kiosk-scroll-hint');
         const textNode = scrollCta.querySelector('.links-alt');
-        if (textNode) textNode.textContent = 'Continue';
+        if (textNode) textNode.textContent = 'Ver mais';
+        const wrap = scrollCta.querySelector('.wrap-image-arrow-scroll-down');
+        const arrow = wrap?.querySelector('.inline-svg');
         const copy = document.createElement('span');
         copy.className = 'hint-copy';
         copy.textContent = 'Ver mais';
-        scrollCta.appendChild(copy);
+        if (wrap) {
+          if (textNode) textNode.remove();
+          wrap.insertBefore(copy, arrow || null);
+        }
         const tapDown = () => scrollCta.classList.add('is-pressed');
         const tapUp = () => scrollCta.classList.remove('is-pressed');
         scrollCta.addEventListener('pointerdown', tapDown);
