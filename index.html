@@ -18,16 +18,16 @@
   .brand-lockup{display:flex;align-items:center;gap:14px}
   .brand-lockup img{width:62px;height:62px;object-fit:contain;flex:0 0 auto}
   .brand-lockup span{font-size:2.3rem;font-weight:700;letter-spacing:.02em;color:var(--kiosk-text);line-height:1}
-  .logo-link-to-homepage{margin-left:auto}
+  .logo-link-to-homepage{margin-left:0;margin-right:auto;display:flex;align-items:center}
   .kiosk-scroll-hint{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:999px;background:color-mix(in srgb,var(--kiosk-bg-elevated) 85%,transparent);border:1px solid color-mix(in srgb,var(--kiosk-accent) 65%,#fff 35%);backdrop-filter:blur(6px);animation:kioskPulse 1.8s ease-in-out infinite;transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
   .kiosk-scroll-hint:active,.kiosk-scroll-hint.is-pressed{transform:scale(.95);opacity:.85}
   .kiosk-scroll-hint .hint-copy{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kiosk-accent-strong)}
   .kiosk-scroll-hint:hover,.kiosk-scroll-hint.is-pressed{box-shadow:0 0 0 2px color-mix(in srgb,var(--kiosk-accent) 65%,transparent)}
   @keyframes kioskPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
   .header{display:flex;flex-direction:column;justify-content:flex-start;gap:clamp(18px,2.6vh,30px)}
-  .header .mask-carousel{touch-action:none;cursor:default;overflow:hidden;min-height:clamp(300px,46vh,520px)}
+  .header .mask-carousel{position:relative;display:grid;place-items:center;touch-action:none;cursor:default;overflow:hidden;min-height:clamp(300px,46vh,520px)}
   .header .mask-carousel.is-dragging{cursor:default}
-  .header .carousel-rotate-on-mouse-move{will-change:transform;transform:translate3d(0,0,0) rotate(var(--kiosk-arc-angle,0deg));transform-origin:50% 140%;transition:transform .12s linear}
+  .header .carousel-rotate-on-mouse-move,.header .carousel-rotate-on-scroll{transform:none!important;translate:none!important;left:auto!important;right:auto!important;animation:none!important;transition:none!important}
   .kiosk-arc-layer{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
   .kiosk-arc-rotor{position:relative;width:100%;height:100%;transform-origin:50% 58%;will-change:transform}
   .kiosk-arc-card{position:absolute;left:50%;top:58%;width:min(22vw,320px);max-width:320px;min-width:170px;will-change:transform;transform-origin:center center;cursor:pointer;pointer-events:auto;transform:translate(-50%,-50%) rotate(var(--slot-angle,0deg)) translateY(calc(var(--kiosk-arc-radius,-220px))) rotate(calc(var(--slot-angle,0deg) * -1))}
@@ -381,6 +381,7 @@
       const logoLink = document.querySelector('.logo-link-to-homepage');
       if (logoLink) {
         logoLink.innerHTML = `<div class="brand-lockup"><img src="${LOGO_PATH}" alt="Logo Linde Vidros"><span>Linde Vidros</span></div>`;
+        logoLink.setAttribute('aria-label', 'Linde Vidros');
       }
 
       const scrollCta = document.querySelector('.arrow-scroll-down');
@@ -420,7 +421,7 @@
       ];
 
       let angleOffset = 0;
-      let angularVelocity = -0.12;
+      let angularVelocity = -0.08;
       let raf = null;
       let pauseUntil = 0;
       let draggedDistance = 0;
@@ -468,9 +469,9 @@
         const render = () => {
           if (Date.now() > pauseUntil) {
             angleOffset += angularVelocity;
-            if (angleOffset <= -360) angleOffset = 0;
+            if (Math.abs(angleOffset) >= 360) angleOffset = 0;
           }
-          if (rotor) rotor.style.transform = `rotateZ(${angleOffset.toFixed(2)}deg)`;
+          if (rotor) rotor.style.transform = `translate3d(0,0,0) rotateZ(${angleOffset.toFixed(2)}deg)`;
           raf = requestAnimationFrame(render);
         };
         raf = requestAnimationFrame(render);
