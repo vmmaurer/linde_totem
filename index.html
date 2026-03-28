@@ -16,7 +16,7 @@
   .text-color-light{color:var(--kiosk-text)!important}
   .text-opacity-50{color:var(--kiosk-text-muted)}
   .brand-lockup{display:flex;align-items:center;gap:14px}
-  .brand-lockup img{width:68px;height:68px;object-fit:contain;flex:0 0 auto}
+  .brand-lockup img{width:62px;height:62px;object-fit:contain;flex:0 0 auto}
   .brand-lockup span{font-size:2.3rem;font-weight:700;letter-spacing:.02em;color:var(--kiosk-text);line-height:1}
   .logo-link-to-homepage{margin-left:0;margin-right:auto;display:flex;align-items:center}
   .kiosk-scroll-hint{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:999px;background:color-mix(in srgb,var(--kiosk-bg-elevated) 85%,transparent);border:1px solid color-mix(in srgb,var(--kiosk-accent) 65%,#fff 35%);backdrop-filter:blur(6px);animation:kioskPulse 1.8s ease-in-out infinite;transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
@@ -88,7 +88,7 @@
   .kiosk-cta-box p{margin:12px 0 0;color:var(--kiosk-text-muted)}
   .kiosk-qr-placeholder{width:min(230px,42vw);aspect-ratio:1;border-radius:18px;border:2px dashed var(--kiosk-accent-strong);display:grid;place-items:center;font-size:2rem;font-weight:800;color:var(--kiosk-accent-strong);justify-self:center}
   .menu-button,.arrow-scroll-down,.logo-link-to-homepage{min-height:52px;min-width:52px}
-  @media (max-width:991px){.brand-lockup img{width:52px;height:52px}.brand-lockup span{font-size:1.45rem}.kiosk-detail-panel,.kiosk-cta-box{grid-template-columns:1fr}.kiosk-detail-media img{min-height:240px}.wrap-text-header-on-photo-home{gap:14px}.kiosk-service-grid,.kiosk-differentials-grid,.kiosk-quick-grid,.kiosk-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.kiosk-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:991px){.brand-lockup img{width:48px;height:48px}.brand-lockup span{font-size:1.45rem}.kiosk-detail-panel,.kiosk-cta-box{grid-template-columns:1fr}.kiosk-detail-media img{min-height:240px}.wrap-text-header-on-photo-home{gap:14px}.kiosk-service-grid,.kiosk-differentials-grid,.kiosk-quick-grid,.kiosk-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.kiosk-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style></head><body><div style="display:block" class="preloader-hide-show"><div data-w-id="5a5bd895-c025-2bc1-a5c4-185a7bfc6acc" class="preloader"><div class="preloader-content"><div class="hidden"><div class="preloader-mask"></div></div><div class="preloader-slide-01"><div class="preloader-text">Hello</div></div><div class="preloader-slide-02"><div class="preloader-text">Bonjour</div></div><div class="preloader-slide-03"><div class="preloader-text">Ciao</div></div><div class="preloader-slide-04"><div class="preloader-text">Hola</div></div><div class="preloader-slide-05"><div class="preloader-text">Hallo</div></div><div class="preloader-slide-06"><div class="preloader-text">Namaste</div></div><div class="preloader-slide-07"><div class="preloader-text">Nǐ hǎo</div></div><div class="preloader-wrap-smile"><div class="inline-svg w-embed"><svg x="0px" y="0px" viewBox="0 0 130 43">
 <mask id="PrelM">
 <g transform="translate(65 -48)">
@@ -419,13 +419,7 @@
 
       let angleOffset = 0;
       const autoSpinSpeed = -0.018;
-      let swipeVelocity = 0;
       let raf = null;
-      let pauseUntil = 0;
-      let draggedDistance = 0;
-      let touchPointerId = null;
-      let lastTouchX = 0;
-      let lastTouchY = 0;
 
       if (mask && moveTarget && rotateTrack && cards.length) {
         moveTarget.style.transform = 'translate3d(0,0,0)';
@@ -435,53 +429,11 @@
         moveTarget.style.pointerEvents = 'auto';
 
         const render = () => {
-          const now = Date.now();
-          if (now > pauseUntil) {
-            angleOffset += autoSpinSpeed + swipeVelocity;
-          }
-
-          swipeVelocity *= 0.93;
-          if (Math.abs(swipeVelocity) < 0.0001) swipeVelocity = 0;
-
+          angleOffset += autoSpinSpeed;
           if (Math.abs(angleOffset) >= 360) angleOffset %= 360;
           rotateTrack.style.transform = `translate3d(0,0,0) rotateZ(${angleOffset.toFixed(2)}deg)`;
           raf = requestAnimationFrame(render);
         };
-
-        const stopTouch = (event) => {
-          if (touchPointerId === null || event.pointerId !== touchPointerId) return;
-          touchPointerId = null;
-          draggedDistance = 0;
-          mask.classList.remove('is-dragging');
-        };
-
-        mask.addEventListener('pointerdown', (event) => {
-          if (event.pointerType !== 'touch') return;
-          touchPointerId = event.pointerId;
-          lastTouchX = event.clientX;
-          lastTouchY = event.clientY;
-          draggedDistance = 0;
-          mask.classList.add('is-dragging');
-        });
-
-        mask.addEventListener('pointermove', (event) => {
-          if (touchPointerId === null || event.pointerId !== touchPointerId || event.pointerType !== 'touch') return;
-
-          const deltaX = event.clientX - lastTouchX;
-          const deltaY = event.clientY - lastTouchY;
-          lastTouchX = event.clientX;
-          lastTouchY = event.clientY;
-
-          if (Math.abs(deltaX) > Math.abs(deltaY)) {
-            event.preventDefault();
-            draggedDistance += Math.abs(deltaX);
-            swipeVelocity = Math.max(-0.25, Math.min(0.25, swipeVelocity + (deltaX * 0.0016)));
-          }
-        }, { passive: false });
-
-        mask.addEventListener('pointerup', stopTouch);
-        mask.addEventListener('pointercancel', stopTouch);
-        mask.addEventListener('pointerleave', stopTouch);
 
         raf = requestAnimationFrame(render);
       }
@@ -503,8 +455,6 @@
         card.addEventListener('pointerup', () => card.classList.remove('is-active'));
         card.addEventListener('pointercancel', () => card.classList.remove('is-active'));
         card.addEventListener('click', () => {
-          if (draggedDistance > 10) return;
-          pauseUntil = Date.now() + 10000;
           const product = products[index % products.length];
           overlay.querySelector('img').src = img.src;
           overlay.querySelector('h3').textContent = product.title;
