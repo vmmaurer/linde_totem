@@ -24,10 +24,12 @@
   .kiosk-scroll-hint .hint-copy{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kiosk-accent-strong)}
   .kiosk-scroll-hint:hover,.kiosk-scroll-hint.is-pressed{box-shadow:0 0 0 2px color-mix(in srgb,var(--kiosk-accent) 65%,transparent)}
   @keyframes kioskPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  @keyframes kioskCarouselAutoplay{from{transform:translate3d(0,0,0) rotateZ(0deg)}to{transform:translate3d(0,0,0) rotateZ(-360deg)}}
   .header{display:flex;flex-direction:column;justify-content:flex-start;gap:clamp(18px,2.6vh,30px)}
   .header .mask-carousel{touch-action:pan-y;cursor:default;overflow:visible;min-height:clamp(300px,46vh,520px)}
   .header .mask-carousel.is-dragging{cursor:default}
   .header .carousel-rotate-on-mouse-move{transform:translate3d(0,0,0)!important;left:auto!important;right:auto!important;animation:none!important;transition:none!important}
+  .header .carousel-rotate-on-scroll{animation:kioskCarouselAutoplay 220s linear infinite;will-change:transform}
   .header .wrap-image-banner{transition:transform .25s ease,filter .25s ease}
   .header .wrap-image-banner.is-active{transform:scale(1.04);filter:brightness(1.08)}
   .wrap-text-header-on-photo-home{display:flex;flex-direction:column;align-items:center;gap:18px;padding:20px 20px 8px}
@@ -417,25 +419,15 @@
         {title:'Linha Premium 01', subtitle:'Vidro inteligente', finish:'Controle solar', use:'Espaços tecnológicos'}
       ];
 
-      let angleOffset = 0;
-      const autoSpinSpeed = -0.018;
-      let raf = null;
-
-      if (mask && moveTarget && rotateTrack && cards.length) {
+      if (moveTarget) {
         moveTarget.style.transform = 'translate3d(0,0,0)';
         moveTarget.style.left = 'auto';
         moveTarget.style.right = 'auto';
         moveTarget.style.opacity = '1';
         moveTarget.style.pointerEvents = 'auto';
-
-        const render = () => {
-          angleOffset += autoSpinSpeed;
-          if (Math.abs(angleOffset) >= 360) angleOffset %= 360;
-          rotateTrack.style.transform = `translate3d(0,0,0) rotateZ(${angleOffset.toFixed(2)}deg)`;
-          raf = requestAnimationFrame(render);
-        };
-
-        raf = requestAnimationFrame(render);
+      }
+      if (mask && rotateTrack && cards.length) {
+        rotateTrack.style.animationPlayState = 'running';
       }
 
       const overlay = document.createElement('div');
