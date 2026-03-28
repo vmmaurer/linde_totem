@@ -18,20 +18,16 @@
   .brand-lockup{display:flex;align-items:center;gap:14px}
   .brand-lockup img{width:62px;height:62px;object-fit:contain;flex:0 0 auto}
   .brand-lockup span{font-size:2.3rem;font-weight:700;letter-spacing:.02em;color:var(--kiosk-text);line-height:1}
-  .logo-link-to-homepage{margin-left:auto}
+  .logo-link-to-homepage{margin-left:0;margin-right:auto;display:flex;align-items:center}
   .kiosk-scroll-hint{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:999px;background:color-mix(in srgb,var(--kiosk-bg-elevated) 85%,transparent);border:1px solid color-mix(in srgb,var(--kiosk-accent) 65%,#fff 35%);backdrop-filter:blur(6px);animation:kioskPulse 1.8s ease-in-out infinite;transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
   .kiosk-scroll-hint:active,.kiosk-scroll-hint.is-pressed{transform:scale(.95);opacity:.85}
   .kiosk-scroll-hint .hint-copy{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kiosk-accent-strong)}
   .kiosk-scroll-hint:hover,.kiosk-scroll-hint.is-pressed{box-shadow:0 0 0 2px color-mix(in srgb,var(--kiosk-accent) 65%,transparent)}
   @keyframes kioskPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
   .header{display:flex;flex-direction:column;justify-content:flex-start;gap:clamp(18px,2.6vh,30px)}
-  .header .mask-carousel{touch-action:none;cursor:default;overflow:hidden;min-height:clamp(300px,46vh,520px)}
+  .header .mask-carousel{touch-action:none;cursor:default;overflow:visible;min-height:clamp(300px,46vh,520px)}
   .header .mask-carousel.is-dragging{cursor:default}
-  .header .carousel-rotate-on-mouse-move{will-change:transform;transform:translate3d(0,0,0) rotate(var(--kiosk-arc-angle,0deg));transform-origin:50% 140%;transition:transform .12s linear}
-  .kiosk-arc-layer{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
-  .kiosk-arc-rotor{position:relative;width:100%;height:100%;transform-origin:50% 58%;will-change:transform}
-  .kiosk-arc-card{position:absolute;left:50%;top:58%;width:min(22vw,320px);max-width:320px;min-width:170px;will-change:transform;transform-origin:center center;cursor:pointer;pointer-events:auto;transform:translate(-50%,-50%) rotate(var(--slot-angle,0deg)) translateY(calc(var(--kiosk-arc-radius,-220px))) rotate(calc(var(--slot-angle,0deg) * -1))}
-  .kiosk-arc-card .image{width:100%;height:auto;display:block}
+  .header .carousel-rotate-on-mouse-move{transform:translate3d(0,0,0)!important;left:auto!important;right:auto!important;animation:none!important;transition:none!important}
   .header .wrap-image-banner{transition:transform .25s ease,filter .25s ease}
   .header .wrap-image-banner.is-active{transform:scale(1.04);filter:brightness(1.08)}
   .wrap-text-header-on-photo-home{display:flex;flex-direction:column;align-items:center;gap:18px;padding:20px 20px 8px}
@@ -105,7 +101,7 @@
 
 <path mask="url(#PrelM)" fill="var(--color-accent-01)" stroke-miterlimit="10" d="M65,42c-24,0-46.6-9.4-63.6-26.4L15.5,1.5C28.7,14.8,46.3,22,65,22s36.3-7.3,49.5-20.5l14.1,14.1 C111.6,32.7,89,42,65,42z"></path>
 
-</svg></div></div></div><div class="preloader-curtain"></div></div></div><div data-w-id="644a52be-7d45-8da8-d171-25410bfeb03b" class="navbar-and-header"><div class="menu"><div class="navbar"><div class="flex-hor-between-center scrollbar-fix"><a href="/" aria-current="page" class="logo-link-to-homepage w-inline-block w--current"><img src="images/0Sulw33P46qJ.svg" loading="lazy" alt="" class="logo-image"></a><div class="menu-buttons"><div class="cart-button-group"><div class="cart-icon w-embed"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 28 28">
+</svg></div></div></div><div class="preloader-curtain"></div></div></div><div data-w-id="644a52be-7d45-8da8-d171-25410bfeb03b" class="navbar-and-header"><div class="menu"><div class="navbar"><div class="flex-hor-between-center scrollbar-fix"><a href="/" aria-current="page" class="logo-link-to-homepage w-inline-block w--current" aria-label="Linde Vidros"><div class="brand-lockup"><img src="images/logo-linde.png" loading="lazy" alt="Logo Linde Vidros" class="logo-image"><span>Linde Vidros</span></div></a><div class="menu-buttons"><div class="cart-button-group"><div class="cart-icon w-embed"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 28 28">
 <path fill="none" stroke="var(--text-color-light)" stroke-width="2" stroke-miterlimit="10" d="M21.5,26H6.5c-2.3,0-4.1-1.8-4.2-4L2,11.4C2,10.6,2.6,10,3.4,10h21.1c0.8,0,1.4,0.6,1.4,1.4L25.6,22C25.6,24.2,23.7,26,21.5,26z"></path>
 <path fill="none" stroke="var(--text-color-light)" stroke-width="2" stroke-miterlimit="10" d="M8.5,13V6.6C8.5,3.6,11,1,14,1s5.5,2.6,5.5,5.6V13"></path>
 </svg></div><div class="cart-overlay"><div data-open-product="" data-wf-cart-type="modal" data-wf-cart-query="query Dynamo3 {
@@ -381,6 +377,7 @@
       const logoLink = document.querySelector('.logo-link-to-homepage');
       if (logoLink) {
         logoLink.innerHTML = `<div class="brand-lockup"><img src="${LOGO_PATH}" alt="Logo Linde Vidros"><span>Linde Vidros</span></div>`;
+        logoLink.setAttribute('aria-label', 'Linde Vidros');
       }
 
       const scrollCta = document.querySelector('.arrow-scroll-down');
@@ -408,6 +405,7 @@
 
       const mask = document.querySelector('.header .mask-carousel');
       const moveTarget = document.querySelector('.header .carousel-rotate-on-mouse-move');
+      const rotateTrack = document.querySelector('.header .carousel-rotate-on-scroll');
       const cards = Array.from(document.querySelectorAll('.header .wrap-image-banner')).filter((card) => card.querySelector('img.image'));
       const products = [
         {title:'Linha Premium 04', subtitle:'Vidro arquitetônico', finish:'Transparente', use:'Fachadas e divisórias'},
@@ -420,57 +418,24 @@
       ];
 
       let angleOffset = 0;
-      let angularVelocity = -0.12;
+      let angularVelocity = -0.06;
       let raf = null;
       let pauseUntil = 0;
       let draggedDistance = 0;
-      let arcCards = [];
-      let rotor = null;
 
-      const layoutArcCards = () => {
-        if (!mask || !arcCards.length) return;
-        const width = mask.clientWidth;
-        const radius = Math.min(width * 0.32, 240);
-        const spread = 118;
-        const startAngle = -spread / 2;
-        const step = arcCards.length > 1 ? spread / (arcCards.length - 1) : 0;
-        mask.style.setProperty('--kiosk-arc-radius', `${-radius}px`);
-
-        arcCards.forEach((card, index) => {
-          const cardAngle = startAngle + step * index;
-          card.style.setProperty('--slot-angle', `${cardAngle}deg`);
-          const zBoost = 100 + Math.round(40 - Math.abs(cardAngle));
-          card.style.zIndex = String(zBoost);
-        });
-      };
-
-      if (mask && moveTarget && cards.length) {
-        moveTarget.style.opacity = '0';
-        moveTarget.style.pointerEvents = 'none';
-
-        const arcLayer = document.createElement('div');
-        arcLayer.className = 'kiosk-arc-layer';
-        rotor = document.createElement('div');
-        rotor.className = 'kiosk-arc-rotor';
-        arcLayer.appendChild(rotor);
-        mask.appendChild(arcLayer);
-
-        arcCards = cards.map((card, index) => {
-          const clone = card.cloneNode(true);
-          clone.classList.add('kiosk-arc-card');
-          clone.dataset.cardIndex = String(index);
-          rotor.appendChild(clone);
-          return clone;
-        });
-        layoutArcCards();
-        window.addEventListener('resize', layoutArcCards);
+      if (mask && moveTarget && rotateTrack && cards.length) {
+        moveTarget.style.transform = 'translate3d(0,0,0)';
+        moveTarget.style.left = 'auto';
+        moveTarget.style.right = 'auto';
+        moveTarget.style.opacity = '1';
+        moveTarget.style.pointerEvents = 'auto';
 
         const render = () => {
           if (Date.now() > pauseUntil) {
             angleOffset += angularVelocity;
-            if (angleOffset <= -360) angleOffset = 0;
+            if (Math.abs(angleOffset) >= 360) angleOffset = 0;
           }
-          if (rotor) rotor.style.transform = `rotateZ(${angleOffset.toFixed(2)}deg)`;
+          rotateTrack.style.transform = `translate3d(0,0,0) rotateZ(${angleOffset.toFixed(2)}deg)`;
           raf = requestAnimationFrame(render);
         };
         raf = requestAnimationFrame(render);
@@ -485,7 +450,7 @@
       overlay.addEventListener('click', (e) => { if (e.target === overlay) closeOverlay(); });
       overlay.querySelector('.kiosk-detail-close').addEventListener('click', closeOverlay);
 
-      const interactiveCards = arcCards.length ? arcCards : cards;
+      const interactiveCards = cards;
       interactiveCards.forEach((card, index) => {
         const img = card.querySelector('img.image');
         card.style.cursor = 'pointer';
