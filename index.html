@@ -15,16 +15,16 @@
   .line-horizontal-dark,.line-horizontal-light{background-color:color-mix(in srgb,var(--kiosk-accent) 40%,#fff 60%)}
   .text-color-light{color:var(--kiosk-text)!important}
   .text-opacity-50{color:var(--kiosk-text-muted)}
-  .brand-lockup{display:flex;align-items:baseline;gap:2px}
-  .brand-lockup img{width:104px;height:104px;object-fit:contain;flex:0 0 auto}
-  .brand-lockup span{font-size:2.55rem;font-weight:700;letter-spacing:.008em;color:var(--kiosk-text);line-height:1}
+  .brand-lockup{display:flex;align-items:baseline;gap:0}
+  .brand-lockup img{width:132px;height:132px;object-fit:contain;flex:0 0 auto}
+  .brand-lockup span{font-size:3.2rem;font-weight:700;letter-spacing:.006em;color:var(--kiosk-text);line-height:1}
   .logo-link-to-homepage{margin-left:0;margin-right:auto;display:flex;align-items:center}
-  .kiosk-scroll-hint{position:absolute;left:50%;bottom:clamp(14px,3.2vh,34px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px 36px;min-height:152px;min-width:224px;border-radius:36px;background:color-mix(in srgb,var(--kiosk-bg-elevated) 96%,transparent);border:2px solid color-mix(in srgb,var(--kiosk-accent) 84%,#fff 16%);backdrop-filter:blur(6px);box-shadow:0 14px 32px rgba(0,0,0,.28);animation:kioskPulse 1.8s ease-in-out infinite;transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
+  .kiosk-scroll-hint{position:absolute;left:50%;bottom:clamp(12px,3.2vh,32px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:28px 44px;min-height:184px;min-width:284px;border-radius:30px;background:linear-gradient(180deg,color-mix(in srgb,var(--kiosk-bg-elevated) 98%,#fff 2%),color-mix(in srgb,var(--kiosk-bg) 92%,#fff 8%));border:2px solid color-mix(in srgb,var(--kiosk-accent) 88%,#fff 12%);backdrop-filter:blur(8px);box-shadow:0 20px 44px rgba(0,0,0,.34),0 0 0 1px rgba(255,255,255,.06) inset;animation:kioskPulse 1.8s ease-in-out infinite;transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
   .kiosk-scroll-hint:active,.kiosk-scroll-hint.is-pressed{transform:translateX(-50%) scale(.95);opacity:.85}
-  .kiosk-scroll-hint .wrap-image-arrow-scroll-down{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-  .kiosk-scroll-hint .links-alt{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--kiosk-text-muted)}
-  .kiosk-scroll-hint .hint-copy{font-size:1.18rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--kiosk-accent-strong)}
-  .kiosk-scroll-hint .inline-svg{width:30px;height:52px}
+  .kiosk-scroll-hint .wrap-image-arrow-scroll-down{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+  .kiosk-scroll-hint .links-alt{font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;color:var(--kiosk-text-muted)}
+  .kiosk-scroll-hint .hint-copy{font-size:1.45rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--kiosk-accent-strong)}
+  .kiosk-scroll-hint .inline-svg{width:38px;height:64px}
   .kiosk-scroll-hint:hover,.kiosk-scroll-hint.is-pressed{box-shadow:0 0 0 2px color-mix(in srgb,var(--kiosk-accent) 65%,transparent)}
   @keyframes kioskPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
   @keyframes kioskCarouselAutoplay{from{transform:translate3d(0,0,0) rotateZ(0deg)}to{transform:translate3d(0,0,0) rotateZ(-360deg)}}
@@ -94,7 +94,7 @@
   .kiosk-cta-box p{margin:12px 0 0;color:var(--kiosk-text-muted)}
   .kiosk-qr-placeholder{width:min(230px,42vw);aspect-ratio:1;border-radius:18px;border:2px dashed var(--kiosk-accent-strong);display:grid;place-items:center;font-size:2rem;font-weight:800;color:var(--kiosk-accent-strong);justify-self:center}
   .menu-button,.arrow-scroll-down,.logo-link-to-homepage{min-height:52px;min-width:52px}
-  @media (max-width:991px){.brand-lockup img{width:72px;height:72px}.brand-lockup span{font-size:1.65rem}.kiosk-scroll-hint{padding:18px 26px;min-height:124px;min-width:186px;bottom:14px}.kiosk-detail-panel,.kiosk-cta-box{grid-template-columns:1fr}.kiosk-detail-media img{min-height:240px}.wrap-text-header-on-photo-home{gap:14px}.kiosk-service-grid,.kiosk-differentials-grid,.kiosk-quick-grid,.kiosk-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.kiosk-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:991px){.brand-lockup img{width:88px;height:88px}.brand-lockup span{font-size:2rem}.kiosk-scroll-hint{padding:20px 28px;min-height:138px;min-width:208px;bottom:12px}.kiosk-detail-panel,.kiosk-cta-box{grid-template-columns:1fr}.kiosk-detail-media img{min-height:240px}.wrap-text-header-on-photo-home{gap:14px}.kiosk-service-grid,.kiosk-differentials-grid,.kiosk-quick-grid,.kiosk-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.kiosk-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style></head><body><div style="display:block" class="preloader-hide-show"><div data-w-id="5a5bd895-c025-2bc1-a5c4-185a7bfc6acc" class="preloader"><div class="preloader-content"><div class="hidden"><div class="preloader-mask"></div></div><div class="preloader-slide-01"><div class="preloader-text">Hello</div></div><div class="preloader-slide-02"><div class="preloader-text">Bonjour</div></div><div class="preloader-slide-03"><div class="preloader-text">Ciao</div></div><div class="preloader-slide-04"><div class="preloader-text">Hola</div></div><div class="preloader-slide-05"><div class="preloader-text">Hallo</div></div><div class="preloader-slide-06"><div class="preloader-text">Namaste</div></div><div class="preloader-slide-07"><div class="preloader-text">Nǐ hǎo</div></div><div class="preloader-wrap-smile"><div class="inline-svg w-embed"><svg x="0px" y="0px" viewBox="0 0 130 43">
 <mask id="PrelM">
 <g transform="translate(65 -48)">
@@ -390,10 +390,10 @@
       if (scrollCta) {
         scrollCta.classList.add('kiosk-scroll-hint');
         const textNode = scrollCta.querySelector('.links-alt');
-        if (textNode) textNode.textContent = 'Explore';
+        if (textNode) textNode.textContent = 'Continue';
         const copy = document.createElement('span');
         copy.className = 'hint-copy';
-        copy.textContent = 'Ver mais';
+        copy.textContent = 'Descubra mais';
         scrollCta.appendChild(copy);
         const tapDown = () => scrollCta.classList.add('is-pressed');
         const tapUp = () => scrollCta.classList.remove('is-pressed');
